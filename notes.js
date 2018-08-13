@@ -42,13 +42,16 @@ var getAll = () => {
 };
 
 var getNote = (title) => {
-  console.log('Getting note: ', title);
+  var notes = fetchNotes();
+  // Filter notes by saving all the notes that have the same title.
+  var filteredNotes = notes.filter((note) => note.title === title);
+  return filteredNotes[0];
 };
 
 var removeNote = (title) => {
   // Fetch notes
   var notes = fetchNotes();
-  // Filter note
+  // Filter note by saving all the notes that do not have the provided title.
   var filteredNotes = notes.filter((note) => note.title !== title);
   // save new notes array
   saveNotes(filteredNotes);
