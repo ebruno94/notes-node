@@ -38,7 +38,7 @@ var addNote = (title, body) => {
 };
 
 var getAll = () => {
-  console.log('Getting all notes');
+  return fetchNotes();
 };
 
 var getNote = (title) => {
@@ -46,7 +46,15 @@ var getNote = (title) => {
 };
 
 var removeNote = (title) => {
-  console.log('Removing note: ', title);
+  // Fetch notes
+  var notes = fetchNotes();
+  // Filter note
+  var filteredNotes = notes.filter((note) => note.title !== title);
+  // save new notes array
+  saveNotes(filteredNotes);
+
+  // check lengths of notes and filteredNote, return inequality === true
+  return notes.length !== filteredNotes.length
 };
 
 module.exports = {

@@ -13,13 +13,17 @@ console.log('Yargs', argv);
 
 if (command === 'add'){
   var note = notes.addNote(argv.title, argv.body);
-  (note) ? console.log(`Note titled "${argv.title}" was successfully added`) : console.log('Title already exists!')
+  var message = (note) ? `Note titled "${argv.title}" was successfully added` : 'Title already exists!';
+  console.log(message);
 } else if (command === 'list'){
-  notes.getAll();
+  console.log('Listing ...');
+  console.log(notes.getAll());
 } else if (command === 'read'){
   notes.getNote(argv.title);
 } else if (command === 'remove'){
-  notes.removeNote(argv.title);
+  var noteRemoved = notes.removeNote(argv.title);
+  var message = (noteRemoved) ? `Note successfully removed!` : `Title not found!`;
+  console.log(message);
 } else {
   console.log('Command not recognized');
 }
